@@ -1,3 +1,4 @@
+# CODE chỉ chạy đúng nếu SBD nhập vào trong [1,9999]
 import math
 import random 
 
@@ -35,47 +36,40 @@ def euclide_extended(number_1, number_2):
         y2 = y1; y1 = y
     return y2
 
+def nhanBinhPhuong(n, k, mod):
+    list_k = doi_nhi_phan(k)
+    p, a  = 1, 1 
+    print(list_k)
+    for i in range(len(list_k)):
+        a = pow(p, 2, mod)
+        print(list_k[i],a, end="   ")
+        if list_k[i] == 1:
+            p = (a * n) % mod
+            print(p)
+        else: 
+            p = a
+            print(p)
+    return p
+
 def cripsto(SBD):
-    b, c, d, p, q, e = 1, 1, 1, 1, 1, 0
+    d, p, q, e =  1, 1, 1, 0
     while check_prime(q) is False and check_prime(p) is False:
-        p = int(random.randrange(101, 500, 2))
-        q = int(random.randrange(101, 500, 2))
+        p = int(random.randrange(101, 200, 2))
+        q = int(random.randrange(p + 200, 500, 2))
     phi = (q-1)*(p-1)
     n = q * p
     m = SBD + 123
-    for i in range(10000, phi):
-        if math.gcd(phi, i) == 1:
-            e = i
-            break
-    d = euclide_extended(phi, e)
-    if d < 0: d = d + phi
-    
-    list_e = doi_nhi_phan(e)
-    list_d = doi_nhi_phan(d)
-    print(list_e)
-    for i in range(len(list_e)):
-        a = pow(c, 2, n)
-        print(list_e[i], a, end="  ")
-        if list_e[i] == 1: 
-            c = (a * m) % n
-            print(c)
-        else: 
-            c = a
-            print(c)
+    while math.gcd(phi, e) != 1:
+        e = random.randint(10000, phi)
+    c = nhanBinhPhuong(m, e, n)
     print("---------------------------------")
-    print(list_d)
-    for i in range(len(list_d)):
-        a = pow(b, 2, n)
-        print(list_d[i], a, end= "  ")
-        if list_d[i] == 1: 
-            b = (a * c) % n
-            print(b)
-        else: 
-            b = a 
-            print(b)
+    d = euclide_extended(phi, e)
+    if d < 0: 
+        d = d + phi
+    b = nhanBinhPhuong(c, d, n)
     print('p, q, phi, e, d, n = {0}, {1}, {2}, {3}, {4}, {5}'.format(p,q,phi,e,d,n))
     print('Ban ma: {0}'.format(c))
-    print('Ban ro: {0}'.format(b -123))
+    print('Ban ro: {0}'.format(b - 123))
     
 def main():
     SBD = int(input('Nhap vao so bao danh: '))
