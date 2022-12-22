@@ -13,15 +13,6 @@ def check_prime(n):
                 break
     return check
 
-def doi_nhi_phan(n):
-    k = []
-    while (n>0):
-        a = int(float(n%2)) 
-        k.append(a) 
-        n = (n-a)/2
-    k.reverse() 
-    return k
-
 def euclide_extended(number_1, number_2):
     a = number_1; b = number_2
     if b == 0: return(a, 1, 0)
@@ -35,6 +26,15 @@ def euclide_extended(number_1, number_2):
         x2 = x1; x1 = x
         y2 = y1; y1 = y
     return y2
+
+def doi_nhi_phan(n):
+    k = []
+    while (n>0):
+        a = int(float(n%2)) 
+        k.append(a) 
+        n = (n-a)/2
+    k.reverse() 
+    return k
 
 def nhanBinhPhuong(n, k, mod):
     list_k = doi_nhi_phan(k)
@@ -52,10 +52,10 @@ def nhanBinhPhuong(n, k, mod):
     return p
 
 def cripsto(SBD):
-    d, p, q, e =  1, 1, 1, 0
+    p, q, e =  1, 1, 0
     while check_prime(q) is False or check_prime(p) is False:
         p = int(random.randrange(101, 200, 2))
-        q = int(random.randrange(p + 200, 500, 2))
+        q = int(random.randrange(101, 500, 2))
     phi = (q-1)*(p-1)
     n = q * p
     m = SBD + 123
