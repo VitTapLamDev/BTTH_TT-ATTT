@@ -27,7 +27,7 @@ def is_carmichael(n):
         if n % i == 0 :
             for b in range(2, n):
                 if (math.gcd(b, n) == 1):
-                    if nhanBinhPhuong(b, n-1, n) != 1:
+                    if nhanBinhPhuong(b, n-1, n) != 1:   #Có thể dùng hàm pow(b ,n-1, n) cũng được
                         return False
             return True
     return False
