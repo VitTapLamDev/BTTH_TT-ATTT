@@ -1,12 +1,15 @@
+import math
+
 def check_prime(n):
     check = True
-    if n == 1 or n == 0: check = False
+    if n <= 1: check = False
+    if n == 2: check = True
     else:
-        for i in range(2, n):
+        for i in range(2, math.ceil(math.sqrt(n) +1)):
             if n % i == 0:
                 check = False
                 break
-    if check is True: return check
+    return check
     
 def find_primes(n):
     sum = 0; quotient = 0

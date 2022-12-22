@@ -1,6 +1,10 @@
+import math
+
 def check_prime(n):
     check = True
-    for i in range(2,n):
+    if n <= 1: check = False
+    if n == 2: check = True
+    for i in range(2,math.ceil(math.sqrt(n)+1)):
         if n % i == 0:
             check = False
             break

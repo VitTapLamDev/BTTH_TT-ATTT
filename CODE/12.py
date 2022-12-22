@@ -2,7 +2,8 @@ import math
 
 def check_prime(n):
     check = True
-    if n == 2: pass
+    if n <= 1: check = False
+    if n == 2: check = True
     else:
         for i in range (2, math.ceil(math.sqrt(n)) + 1):
             if (n % i == 0): 

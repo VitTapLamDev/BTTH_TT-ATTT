@@ -4,6 +4,8 @@ start_time = time.time()
 
 def find_prime(n):
     check = True
+    if n <= 1: check = False
+    if n == 2: check = True
     for i in range (2, math.ceil(math.sqrt(n))):
         if (n % i == 0):
             check = False
