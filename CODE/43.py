@@ -31,15 +31,17 @@ def nhanBinhPhuong(a, k, n):
     return p
 
 def main():
-    p, q, a, count = 1, 1, 1, 0
-    while check_prime(q) is False and check_prime(p) is False:
-        p = int(random.randrange(1, 1000, 2))
-        q = int(random.randrange(1, 1000, 2))
-    for a in range(1, 100):
-        if check_prime(nhanBinhPhuong(a, p, q)) is True:
-            count += 1
-            print('{0}: {1}^{2} mod {3} = {4}'.format(count, a, p, q, nhanBinhPhuong(a, p, q)))
-    print("So cap thoa man: " + str(count))
-    
+    n = int(input('Nhap vao so tu nhien n: '))
+    p, count = 1, 0
+    while check_prime(p) is False:
+        p = random.randrange(1, 1000, 2)
+    if (n>0) and (n<1000):
+        for i in range(n):
+            if check_prime(nhanBinhPhuong(i, p, n)) is True:
+                count += 1
+                print('{0}: {1}^{2} mod {3} = {4}'.format(count,i,p,n,nhanBinhPhuong(i, p, n)))
+    else:
+        print("Wrong Input!!")
+                
 if __name__ == '__main__':
     main()

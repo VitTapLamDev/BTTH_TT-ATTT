@@ -1,4 +1,4 @@
-# CODE chỉ chạy đúng nếu SBD nhập vào trong [1,9999]
+# CODE chỉ chạy đúng nếu SBD nhập vào trong [1,10000]
 import math
 import random 
 
@@ -53,7 +53,7 @@ def nhanBinhPhuong(n, k, mod):
 
 def cripsto(SBD):
     d, p, q, e =  1, 1, 1, 0
-    while check_prime(q) is False and check_prime(p) is False:
+    while check_prime(q) is False or check_prime(p) is False:
         p = int(random.randrange(101, 200, 2))
         q = int(random.randrange(p + 200, 500, 2))
     phi = (q-1)*(p-1)
