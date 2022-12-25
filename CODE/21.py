@@ -20,8 +20,8 @@ def find_super_primes(a, b):
                 if check_prime(j) is True:
                     count_prime += 1
             if check_prime(count_prime) is True:
-                print('So so nguyen to < {0}: {1}'.format(i, count_prime))
                 count_super_prime += 1
+                print('{0}: So so nguyen to < {1}: {2}'.format(count_super_prime ,i, count_prime))
     print('So so sieu nguyen to: ' + str(count_super_prime))
                 
 def main():
