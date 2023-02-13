@@ -11,26 +11,33 @@ def check_prime(n):
                 break
     return check
     
-def euclide_extended(number_1, number_2):
-    a = number_1; b = number_2
-    if b == 0: return(a, 1, 0)
-    x2 = 1; y1 = 1; x1 = 0; y2 = 0
-    while b > 0:
-        q = math.floor(a/b)
-        r = a - q * b
-        x = x2 - q * x1
-        y = y2 - q * y1
-        a = b; b = r
-        x2 = x1; x1 = x
-        y2 = y1; y1 = y
-    d = a; x= x2; y = y2
-    return d
+# def euclide_extended(number_1, number_2):
+#     a = number_1; b = number_2
+#     if b == 0: return(a, 1, 0)
+#     x2 = 1; y1 = 1; x1 = 0; y2 = 0
+#     while b > 0:
+#         q = math.floor(a/b)
+#         r = a - q * b
+#         x = x2 - q * x1
+#         y = y2 - q * y1
+#         a = b; b = r
+#         x2 = x1; x1 = x
+#         y2 = y1; y1 = y
+#     d = a; x= x2; y = y2
+#     return d
+
+def extended_euclidean_algorithm(a, b):
+    if b == 0:
+        return a, 1, 0
+    gcd, x, y = extended_euclidean_algorithm(b, a % b)
+    return gcd, y, x - (a // b) * y
 
 def find_num_prime(n):
     count = 0
     for i in range(2,n):
         for j in range(i, n):
-            ucln = euclide_extended(j, i)
+            list_tup = extended_euclidean_algorithm(j, i)
+            ucln = list_tup[0]
             check_ucln = check_prime(ucln)
             if check_ucln is True : 
                 count += 1
